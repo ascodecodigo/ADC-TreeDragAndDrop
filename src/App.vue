@@ -3,9 +3,9 @@
         <h2>Max 2 niveles</h2>
         <!-- <input type="number" v-model="maxLevel" /> -->
         <DraggableTree :data="response" @drag="ondrag" crossTree="crossTree" draggable="draggable" ref="tree1">
-            <div slot-scope="{data, store}">
-                <b @click="store.toggleOpen(data)" v-if="data.children &amp;&amp; data.children.length">{{data.open ? '-' : '+'}}&nbsp;</b>
-                <span>{{data.text}}</span>
+            <div class="draggable-content" slot-scope="{data, store}">
+                <button @click="store.toggleOpen(data)" v-if="data.children &amp;&amp; data.children.length">{{data.open ? '-' : '+'}}&nbsp;</button>
+                <span class="draggable-label">{{data.text}}</span>
             </div>
         </DraggableTree>
     </div>
@@ -61,12 +61,52 @@ export default {
 </script>
 
 <style>
-#app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+/* Estilos de contenedor */
+.he-tree {
+    /* border: 1px solid #ccc;
+    padding: 20px; */
+    width: 300px;
+}
+
+/* Contenedor de los nodos */
+.tree-node-inner {
+    border: 1px solid #1e6c99;
+    cursor: pointer;
+    padding-bottom: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 16px;
+}
+
+/* Backgroud de animacion cuando se mueve el dragg */
+.draggable-placeholder {
+    background: #f4f4f4;
+}
+
+/* Border de dragg al moverlo */
+.draggable-placeholder-inner {
+    align-items: center;
+    background: rgba(0, 136, 249, 0.09);
+    border: 1px dashed #0088f8;
+    box-sizing: border-box;
+    color: #0088f9;
+    display: flex;
+    padding: 0;
     text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
+}
+
+.draggable-content {
+    display: flex;
+}
+
+.draggable-content button {
+    margin-right: 10px;
+}
+
+.draggable-label {
+    display: block;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: 500;
+    text-transform: capitalize;
 }
 </style>
